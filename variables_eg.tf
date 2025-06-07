@@ -5,9 +5,3 @@
 #     email = ""
 #   }
 # }
-
-# variable "sns_eg" {
-#   default = {
-#     subscriber-sns-topic-arns=""
-#   }
-# }

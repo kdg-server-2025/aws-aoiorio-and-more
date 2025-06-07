@@ -1,9 +1,9 @@
-resource "aws_sns_topic" "user_updates" {
-  name = "user-updates-topic"
+resource "aws_sns_topic" "budget_alarm" {
+  name = "atom-updates-topic"
 }
 
-resource "aws_sns_topic_subscription" "user_updates_queue" {
-  topic_arn = aws_sns_topic.user_updates.arn
+resource "aws_sns_topic_subscription" "topic_subscription_atom" {
+  topic_arn = aws_sns_topic.budget_alarm.arn
   protocol  = "email"
   endpoint  = var.private.email
 }
@@ -23,6 +23,6 @@ resource "aws_budgets_budget" "cost" {
     threshold_type             = "PERCENTAGE"
     notification_type          = "FORECASTED"
     subscriber_email_addresses = [var.private.email]
-    subscriber_sns_topic_arns  = [var.sns.subscriber-sns-topic-arns]
+    subscriber_sns_topic_arns  = [aws_sns_topic.budget_alarm.arn]
   }
 }
