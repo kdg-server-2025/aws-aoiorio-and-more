@@ -1,6 +1,6 @@
 # billing
 variable "billing_name" {
-    default = "You are running out of money"
+    default = "you-are-running-out-of-money"
 }
 
 variable "billing_threshold" {
