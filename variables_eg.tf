@@ -1,12 +1,13 @@
 # NOTE _egをとって、各自の情報を入力して実行してください
-variable "private_eg" {
-  default = {
-    email = ""
-  }
-}
 
-variable "sns_eg" {
-  default = {
-    subscriber-sns-topic-arns=""
-  }
-}
+# variable "private_eg" {
+#   default = {
+#     email = ""
+#   }
+# }
+
+# variable "sns_eg" {
+#   default = {
+#     subscriber-sns-topic-arns=""
+#   }
+# }
