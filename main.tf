@@ -5,7 +5,7 @@ resource "aws_sns_topic" "budget_alarm" {
 resource "aws_sns_topic_subscription" "topic_subscription_atom" {
   topic_arn = aws_sns_topic.budget_alarm.arn
   protocol  = "email"
-  endpoint  = var.private.email
+  endpoint  = var.email
 }
 
 resource "aws_budgets_budget" "cost" {
@@ -22,7 +22,7 @@ resource "aws_budgets_budget" "cost" {
     threshold                  = 5
     threshold_type             = "PERCENTAGE"
     notification_type          = "FORECASTED"
-    subscriber_email_addresses = [var.private.email]
+    subscriber_email_addresses = [var.email]
     subscriber_sns_topic_arns  = [aws_sns_topic.budget_alarm.arn]
   }
 }
