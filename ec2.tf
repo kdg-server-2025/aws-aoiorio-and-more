@@ -1,4 +1,4 @@
-data "aws_ami" "ubuntu-24-x86" {
+data "aws_ami" "ubuntu" {
   most_recent = true
 
   filter {
@@ -15,7 +15,7 @@ data "aws_ami" "ubuntu-24-x86" {
 }
 
 resource "aws_instance" "kdg-aws-20250621-user-date-enable" {
-  ami = data.aws_ami.ubuntu-24-x86.id
+  ami = data.aws_ami.ubuntu.id
   #   無料枠を使うため、t3.microを使う
   instance_type = "t3.micro"
 
