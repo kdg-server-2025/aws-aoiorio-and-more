@@ -1,0 +1,2 @@
+aws_ecr_authorization_token    = { username = "", password = "" }
+notification_email             = "example@example.com"
