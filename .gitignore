@@ -1,2 +1,3 @@
 **.terraform/*
-variables.tf
+terraform.tfvars
+.DS_store
