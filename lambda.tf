@@ -7,39 +7,39 @@
 # }
 
 # ロールを生成
-resource "aws_iam_role" "lambda" {
-  name = "iam_for_lambda"
-  assume_role_policy = jsonencode({
-    Version = "2012-10-17",
-    Statement = [
-      {
-        Action = "sts:AssumeRole",
-        Principal = {
-          Service = "lambda.amazonaws.com"
-        },
-        Effect = "Allow",
-        Sid    = ""
-      }
-    ]
-  })
-}
+# resource "aws_iam_role" "lambda" {
+#   name = "iam_for_lambda"
+#   assume_role_policy = jsonencode({
+#     Version = "2012-10-17",
+#     Statement = [
+#       {
+#         Action = "sts:AssumeRole",
+#         Principal = {
+#           Service = "lambda.amazonaws.com"
+#         },
+#         Effect = "Allow",
+#         Sid    = ""
+#       }
+#     ]
+#   })
+# }
 
 # GetAccountSettings の権限をインラインポリシーとして付与
-resource "aws_iam_role_policy" "get_account_settings" {
-  name = "GetAccountSettingsPermission"
-  role = aws_iam_role.lambda.id
+# resource "aws_iam_role_policy" "get_account_settings" {
+#   name = "GetAccountSettingsPermission"
+#   role = aws_iam_role.lambda.id
 
-  policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Action   = "lambda:GetAccountSettings"
-        Effect   = "Allow"
-        Resource = "*"
-      },
-    ]
-  })
-}
+#   policy = jsonencode({
+#     Version = "2012-10-17"
+#     Statement = [
+#       {
+#         Action   = "lambda:GetAccountSettings"
+#         Effect   = "Allow"
+#         Resource = "*"
+#       },
+#     ]
+#   })
+# }
 
 # # 初回のみ利用する空のLambdaのファイルを生成
 # data "archive_file" "initial_lambda_package" {
