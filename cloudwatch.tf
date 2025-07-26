@@ -1,6 +1,6 @@
 resource "aws_cloudwatch_metric_alarm" "lambda_metric_alarm" {
-  alarm_name                = "${aws_lambda_function.hello_go_function.function_name}-high-error-count-alarm"
-  alarm_description         = "Errors increased in ${aws_lambda_function.hello_go_function.function_name}"
+  alarm_name                = "${var.lambda_function_name}-high-error-count-alarm"
+  alarm_description         = "Errors increased in ${var.lambda_function_name}"
   comparison_operator       = "GreaterThanOrEqualToThreshold"
   evaluation_periods        = 2
   metric_name               = "ErrorEventCount"
@@ -13,13 +13,13 @@ resource "aws_cloudwatch_metric_alarm" "lambda_metric_alarm" {
   insufficient_data_actions = []
 
   tags = {
-    Name = "${aws_lambda_function.hello_go_function.function_name}-high-error-count-alarm"
+    Name = "${var.lambda_function_name}-high-error-count-alarm"
   }
 }
 
 # アラーム通知用のSNSトピックとサブシクリプション
 resource "aws_sns_topic" "lambda_alarm_topic" {
-  name = "${aws_lambda_function.hello_go_function.function_name}-alarm-topic"
+  name = "${var.lambda_function_name}-alarm-topic"
 }
 
 resource "aws_sns_topic_subscription" "lambda_alarm" {
@@ -32,7 +32,7 @@ resource "aws_sns_topic_subscription" "lambda_alarm" {
 resource "aws_cloudwatch_log_metric_filter" "lambda_metric_filter" {
   name           = "LambdaErrorCount"
   pattern        = "ERROR"
-  log_group_name = "/aws/lambda/${aws_lambda_function.hello_go_function.function_name}"
+  log_group_name = "/aws/lambda/${var.lambda_function_name}"
 
   metric_transformation {
     name      = "ErrorEventCount"

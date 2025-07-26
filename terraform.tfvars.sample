@@ -1,3 +1,4 @@
 email              = ""
 vpc_id             = ""
 iam_for_lambda_arn = ""
+lambda_function_name = ""

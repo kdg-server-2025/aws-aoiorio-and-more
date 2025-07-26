@@ -8,6 +8,11 @@ variable "iam_for_lambda_arn" {
   type        = string
 }
 
+variable "lambda_function_name" {
+  description = "lambda function name"
+  type        = string
+}
+
 # variable "ssh_key" {
 #   description = "we will use this SSH Key"
 #   type        = string
