@@ -3,6 +3,11 @@ variable "email" {
   type        = string
 }
 
+variable "iam_for_lambda_arn" {
+  description = "iam role for lambda arn"
+  type        = string
+}
+
 # variable "ssh_key" {
 #   description = "we will use this SSH Key"
 #   type        = string
