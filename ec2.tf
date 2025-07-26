@@ -14,17 +14,17 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
-resource "aws_instance" "kdg-aws-20250621-user-date-enable" {
-  ami = data.aws_ami.ubuntu.id
-  #   無料枠を使うため、t3.microを使う
-  instance_type = "t3.micro"
+# resource "aws_instance" "kdg-aws-20250621-user-date-enable" {
+#   ami = data.aws_ami.ubuntu.id
+#   #   無料枠を使うため、t3.microを使う
+#   instance_type = "t3.micro"
 
-  tags = {
-    Name     = "kdg-aws-20250621-user-date-enable",
-    UserDate = "true"
-  }
+#   tags = {
+#     Name     = "kdg-aws-20250621-user-date-enable",
+#     UserDate = "true"
+#   }
 
-  vpc_security_group_ids      = [aws_security_group.ssh_enable.id]
-  user_data_replace_on_change = true
-  key_name                    = aws_key_pair.keypair.id
-}
+#   vpc_security_group_ids      = [aws_security_group.ssh_enable.id]
+#   user_data_replace_on_change = true
+#   key_name                    = aws_key_pair.keypair.id
+# }
