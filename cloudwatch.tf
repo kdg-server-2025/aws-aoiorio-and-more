@@ -28,7 +28,7 @@ resource "aws_sns_topic_subscription" "lambda_alarm" {
   endpoint  = var.email
 }
 
-# 文字列ERRORが含まれるログが出た場合、ErrorEventCountにカウントをする
+# 文字列ERRORが含まれるログが出た場合、ErrorEventCountをカウントをする
 resource "aws_cloudwatch_log_metric_filter" "lambda_metric_filter" {
   name           = "LambdaErrorCount"
   pattern        = "ERROR"
