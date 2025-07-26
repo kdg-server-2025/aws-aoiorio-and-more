@@ -88,7 +88,7 @@ func handleRequest(ctx context.Context, request events.APIGatewayProxyRequest) (
 
 	// レスポンスボディを作成
 	responseBody := ResponseBody{
-		Message:         "Successfully processed request!",
+		Message:         "ERROR",
 		CurrentTime:     time.Now().Format(time.RFC3339),
 		LambdaUsage:     usageJson,
 		EnvironmentVars: filteredEnvVars,
@@ -97,13 +97,15 @@ func handleRequest(ctx context.Context, request events.APIGatewayProxyRequest) (
 
 	// レスポンスボディをJSON文字列に変換
 	responseJson, err := json.Marshal(responseBody)
-	if err != nil {
+	if err != nil && responseJson != nil {
 		return events.APIGatewayProxyResponse{StatusCode: 500}, err
 	}
 
+	log.Printf("MESSAGE: %s", responseBody.Message)
+
 	// 正常なレスポンスを返す
 	return events.APIGatewayProxyResponse{
-		StatusCode: 200,
+		StatusCode: 400,
 		Headers: map[string]string{
 			"Content-Type": "application/json",
 		},
